@@ -46,14 +46,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			switch(GetPlayerWeapon(playerid))
 			{
 				case 34..36, 43:
-				{
+				{					
 					_J_AimedWithValidWeap[playerid] = true;
 					for(new i = 0; i < MAX_PLAYER_ATTACHED_OBJECTS; i++)
 					{
 						if(IsPlayerAttachedObjectSlotUsed(playerid, i))
 						{
-							new BitStream:bs = BS_New(); 
-
+							new BitStream:bs = BS_New();
+							
 							BS_WriteValue(
 								bs, 
 								PR_UINT16, playerid, 
@@ -61,7 +61,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 								PR_BOOL, 0
 							);  
 
-							BS_RPC(bs, playerid, 113, PR_LOW_PRIORITY, PR_RELIABLE_ORDERED);  
+							BS_RPC(bs, playerid, 113, PR_LOW_PRIORITY, PR_RELIABLE_ORDERED);
+							BS_Delete(bs);
 						}
 					}
 				}
@@ -71,14 +72,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		else if(RELEASED(128))
 		{
 			if(_J_AimedWithValidWeap[playerid])
-			{
+			{				
 				_J_AimedWithValidWeap[playerid] = false;
 				for(new i = 0; i < MAX_PLAYER_ATTACHED_OBJECTS; i++)
 				{
 					if(IsPlayerAttachedObjectSlotUsed(playerid, i))
 					{
-						new BitStream:bs = BS_New(); 
-
+						new BitStream:bs = BS_New();
+						
 						BS_WriteValue(
 							bs, 
 							PR_UINT16, playerid, 
@@ -99,7 +100,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 							PR_UINT32, _J_AttachmentsEnum[playerid][i][_J_MaterialColor2]
 						);  
 
-						BS_RPC(bs, playerid, 113, PR_LOW_PRIORITY, PR_RELIABLE_ORDERED); 	
+						BS_RPC(bs, playerid, 113, PR_LOW_PRIORITY, PR_RELIABLE_ORDERED); 
+						BS_Delete(bs);							
 					}
 				}
 			}
