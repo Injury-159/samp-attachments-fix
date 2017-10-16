@@ -18,7 +18,7 @@ enum _J_Attachments
 	Float:_J_ScaleY,
 	Float:_J_ScaleZ,
 	_J_MaterialColor1,
-	_J_MaterialColor2,
+	_J_MaterialColor2
 }
 
 /*Macros*/
