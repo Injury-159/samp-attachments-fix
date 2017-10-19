@@ -124,6 +124,34 @@ public OnPlayerConnect(playerid)
 	#endif
 }
 
+public OnPlayerEditAttachedObject(playerid, response, index, modelid, boneid, Float:fOffsetX, Float:fOffsetY, Float:fOffsetZ, Float:fRotX, Float:fRotY, Float:fRotZ, Float:fScaleX, Float:fScaleY, Float:fScaleZ)
+{
+    if(response)
+    {
+        _J_AttachmentsEnum[playerid][index][_J_ModelID] = modelid;
+	
+		_J_AttachmentsEnum[playerid][index][_J_Bone] = boneid;
+		
+		_J_AttachmentsEnum[playerid][index][_J_OffsetX] = fOffsetX;
+		_J_AttachmentsEnum[playerid][index][_J_OffsetY] = fOffsetY;
+		_J_AttachmentsEnum[playerid][index][_J_OffsetZ] = fOffsetZ;
+		
+		_J_AttachmentsEnum[playerid][index][_J_RotX] = fRotX;
+		_J_AttachmentsEnum[playerid][index][_J_RotY] = fRotY;
+		_J_AttachmentsEnum[playerid][index][_J_RotZ] = fRotZ;
+		
+		_J_AttachmentsEnum[playerid][index][_J_ScaleX] = fScaleX;
+		_J_AttachmentsEnum[playerid][index][_J_ScaleY] = fScaleY;
+		_J_AttachmentsEnum[playerid][index][_J_ScaleZ] = fScaleZ;
+    }
+	#if defined J_OnPlayerEditAttachedObject
+		return J_OnPlayerEditAttachedObject(playerid, response, index, modelid, boneid, Float:fOffsetX, Float:fOffsetY, Float:fOffsetZ, Float:fRotX, Float:fRotY, Float:fRotZ, Float:fScaleX, Float:fScaleY, Float:fScaleZ);
+	#else
+		return 1;
+	#endif
+}
+
+
 /*Functions*/
 stock J_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0, materialcolor1 = 0, materialcolor2 = 0)
 {
@@ -178,4 +206,15 @@ forward J_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 
 #if defined J_OnPlayerConnect
 forward J_OnPlayerConnect(playerid);
+#endif
+
+#if defined _ALS_OnPlayerEditAttachedObject
+#undef OnPlayerEditAttachedObject
+#else
+#define _ALS_OnPlayerEditAttachedObject
+#endif
+#define OnPlayerEditAttachedObject J_OnPlayerEditAttachedObject
+
+#if defined J_OnPlayerEditAttachedObject
+forward J_OnPlayerEditAttachedObject(playerid, response, index, modelid, boneid, Float:fOffsetX, Float:fOffsetY, Float:fOffsetZ, Float:fRotX, Float:fRotY, Float:fRotZ, Float:fScaleX, Float:fScaleY, Float:fScaleZ);
 #endif
