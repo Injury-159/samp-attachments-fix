@@ -3,6 +3,10 @@ Attachment Fix
 Jelly23
 */
 
+#if ! defined PAWNRAKNET_INC_
+	#error You must have Pawn.Raknet include in order to use this one.
+#endif
+
 /*Enumerator*/
 enum _J_Attachments
 {
