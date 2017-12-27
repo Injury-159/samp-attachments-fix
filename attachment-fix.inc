@@ -3,6 +3,11 @@ Attachment Fix
 Jelly23
 */
 
+#if defined _jPAF_included
+	#endinput
+#endif
+#define _jPAF_included
+
 #if ! defined PAWNRAKNET_INC_
 	#error You must have Pawn.Raknet include in order to use this one.
 #endif
