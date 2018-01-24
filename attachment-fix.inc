@@ -103,8 +103,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 							PR_FLOAT, _J_AttachmentsEnum[playerid][i][_J_ScaleX],
 							PR_FLOAT, _J_AttachmentsEnum[playerid][i][_J_ScaleY],
 							PR_FLOAT, _J_AttachmentsEnum[playerid][i][_J_ScaleZ],
-							PR_UINT32, _J_AttachmentsEnum[playerid][i][_J_MaterialColor1],
-							PR_UINT32, _J_AttachmentsEnum[playerid][i][_J_MaterialColor2]
+							PR_INT32, _J_AttachmentsEnum[playerid][i][_J_MaterialColor1],
+							PR_INT32, _J_AttachmentsEnum[playerid][i][_J_MaterialColor2]
 						);  
 						BS_RPC(bs, playerid, 113, PR_LOW_PRIORITY, PR_RELIABLE_ORDERED); 
 						BS_Delete(bs);							
