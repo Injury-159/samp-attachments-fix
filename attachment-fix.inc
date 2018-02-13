@@ -68,7 +68,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 								PR_UINT32, i,
 								PR_BOOL, 0
 							);  
-							BS_RPC(bs, playerid, 113, PR_LOW_PRIORITY, PR_RELIABLE_ORDERED);
+							BS_RPC(bs, playerid, 113);
 							BS_Delete(bs);
 						}
 					}
@@ -106,7 +106,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 							PR_INT32, _J_AttachmentsEnum[playerid][i][_J_MaterialColor1],
 							PR_INT32, _J_AttachmentsEnum[playerid][i][_J_MaterialColor2]
 						);  
-						BS_RPC(bs, playerid, 113, PR_LOW_PRIORITY, PR_RELIABLE_ORDERED); 
+						BS_RPC(bs, playerid, 113); 
 						BS_Delete(bs);							
 					}
 				}
