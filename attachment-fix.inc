@@ -92,7 +92,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 							PR_UINT16, playerid, 
 							PR_UINT32, i,
 							PR_BOOL, 1,
-							PR_UINT32, _J_AttachmentsEnum[playerid][i][_J_ModelID],
+							PR_INT32, _J_AttachmentsEnum[playerid][i][_J_ModelID], //Changed from UINT32 to work with 0.3.DL, still gonna work with 0.3.7 with this change
 							PR_UINT32, _J_AttachmentsEnum[playerid][i][_J_Bone],
 							PR_FLOAT, _J_AttachmentsEnum[playerid][i][_J_OffsetX],
 							PR_FLOAT, _J_AttachmentsEnum[playerid][i][_J_OffsetY],
