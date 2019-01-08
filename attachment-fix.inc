@@ -3,14 +3,8 @@ Attachment Fix
 Jelly23
 */
 
-#if defined _jPAF_included
-	#endinput
-#endif
-#define _jPAF_included
-
-#if ! defined PAWNRAKNET_INC_
-	#error You must have Pawn.Raknet include in order to use this one.
-#endif
+#include <a_samp>
+#include <Pawn.RakNet>
 
 /*Enumerator*/
 enum _J_Attachments
@@ -31,11 +25,11 @@ enum _J_Attachments
 }
 
 /*Macros*/
-#if ! defined HOLDING
+#if !defined HOLDING
     #define HOLDING(%0) ((newkeys & (%0)) == (%0))
 #endif
 
-#if ! defined RELEASED
+#if !defined RELEASED
 	#define RELEASED(%0) (((newkeys & (%0)) != (%0)) && ((oldkeys & (%0)) == (%0)))
 #endif
 
@@ -60,22 +54,21 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					{
 						if(IsPlayerAttachedObjectSlotUsed(playerid, i))
 						{
-							new BitStream:bs = BS_New();
+							new BitStream:_J_BitStream = BS_New();
 							
 							BS_WriteValue(
-								bs, 
+								_J_BitStream, 
 								PR_UINT16, playerid, 
 								PR_UINT32, i,
 								PR_BOOL, 0
 							);  
-							BS_RPC(bs, playerid, 113);
-							BS_Delete(bs);
+							BS_RPC(_J_BitStream, playerid, 113);
+							BS_Delete(_J_BitStream);
 						}
 					}
 				}
 			}
 		}
-		
 		else if(RELEASED(128))
 		{
 			if(_J_AimedWithValidWeap[playerid])
@@ -85,10 +78,10 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				{
 					if(IsPlayerAttachedObjectSlotUsed(playerid, i))
 					{
-						new BitStream:bs = BS_New();
+						new BitStream:_J_BitStream = BS_New();
 						
 						BS_WriteValue(
-							bs, 
+							_J_BitStream, 
 							PR_UINT16, playerid, 
 							PR_UINT32, i,
 							PR_BOOL, 1,
@@ -106,8 +99,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 							PR_INT32, _J_AttachmentsEnum[playerid][i][_J_MaterialColor1],
 							PR_INT32, _J_AttachmentsEnum[playerid][i][_J_MaterialColor2]
 						);  
-						BS_RPC(bs, playerid, 113); 
-						BS_Delete(bs);							
+						BS_RPC(_J_BitStream, playerid, 113); 
+						BS_Delete(_J_BitStream);							
 					}
 				}
 			}
